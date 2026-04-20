@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta | B-Day Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="auth-body">
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <i class="fas fa-user-plus"></i>
+                <h1>Crie sua <span>conta</span></h1>
+                <p>Preencha os dados abaixo para começar a gerenciar seus aniversários.</p>
+            </div>
+
+            <form id="form-registro">
+                <div class="input-group" style="text-align: left;">
+                    <label>Nome Completo</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-id-badge"></i>
+                        <input type="text" placeholder="Ex: João Silva" required>
+                    </div>
+                </div>
+
+                <div class="input-group" style="text-align: left;">
+                    <label>Login (Usuário)</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Escolha um nome de usuário" required>
+                    </div>
+                </div>
+
+                <div class="input-group" style="text-align: left;">
+                    <label>Senha</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-auth">Finalizar Cadastro</button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Já possui acesso? <a href="login.html">Fazer Login</a></p>
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar à Vitrine</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulação de cadastro: por enquanto apenas avisa e manda para o login
+        document.getElementById('form-registro').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('🎉 Conta criada com sucesso! Agora faça seu login.');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Pessoa | B-Day Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+
+    <aside class="sidebar">
+        <div class="logo-dash">
+            <i class="fas fa-cake-candles"></i> B-Day<span>Manager</span>
+        </div>
+        <nav class="side-menu">
+            <a href="dashboard.html"><i class="fas fa-home"></i> Início</a>
+            <a href="cadastrar-pessoa.html" class="active"><i class="fas fa-user-plus"></i> Cadastrar Pessoa</a>
+            <a href="#"><i class="fas fa-calendar-alt"></i> Agenda Mensal</a>
+            <a href="index.html" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <h1>Novo Cadastro</h1>
+            <p>Adicione uma nova pessoa para monitorar o aniversário.</p>
+        </header>
+
+        <section class="table-container">
+            <form id="form-cadastro">
+                <div class="stats-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="input-group">
+                        <label>Nome Completo</label>
+                        <input type="text" placeholder="Nome da pessoa" required>
+                    </div>
+                    <div class="input-group">
+                        <label>CPF</label>
+                        <input type="text" placeholder="000.000.000-00" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Data de Nascimento</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Telefone</label>
+                        <input type="tel" placeholder="(00) 00000-0000">
+                    </div>
+                    <div class="input-group">
+                        <label>Tipo (tbPessoaTipo)</label>
+                        <select style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #d1d5db;">
+                            <option value="1">Funcionário</option>
+                            <option value="2">Cliente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; display: flex; gap: 15px;">
+                    <button type="button" class="btn-primary" onclick="alert('Salvo com sucesso!'); window.location.href='dashboard.html'">
+                        Salvar Registro
+                    </button>
+                    <a href="dashboard.html" class="btn-secondary" style="color: var(--dark); border-color: #d1d5db;">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Pessoa | B-Day Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+
+    <aside class="sidebar">
+        <div class="logo-dash">
+            <i class="fas fa-cake-candles"></i> B-Day<span>Manager</span>
+        </div>
+        <nav class="side-menu">
+            <a href="dashboard.html"><i class="fas fa-home"></i> Início</a>
+            <a href="cadastrar-pessoa.html" class="active"><i class="fas fa-user-plus"></i> Cadastrar Pessoa</a>
+            <a href="agenda.html"><i class="fas fa-calendar-alt"></i> Agenda Mensal</a>
+            <a href="index.html" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <h1>Novo Cadastro</h1>
+            <p>Adicione uma nova pessoa para monitorar o aniversário no banco Railway.</p>
+        </header>
+
+        <section class="table-container">
+            <form id="form-cadastro">
+                <div class="stats-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="input-group">
+                        <label>Nome Completo</label>
+                        <input type="text" id="nome" placeholder="Nome da pessoa" required>
+                    </div>
+                    <div class="input-group">
+                        <label>CPF</label>
+                        <input type="text" id="cpf" placeholder="000.000.000-00" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Data de Nascimento</label>
+                        <input type="date" id="nascimento" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Telefone</label>
+                        <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+                    </div>
+                    <div class="input-group">
+                        <label>Tipo (tbPessoaTipo)</label>
+                        <select id="pessoa_tipo_id" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #d1d5db;">
+                            <option value="1">Funcionário</option>
+                            <option value="2">Cliente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; display: flex; gap: 15px;">
+                    <button type="submit" class="btn-primary">
+                        Salvar Registro
+                    </button>
+                    <a href="dashboard.html" class="btn-secondary" style="text-decoration: none; display: flex; align-items: center; justify-content: center; color: var(--dark); border: 1px solid #d1d5db; border-radius: 8px; padding: 0 20px;">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

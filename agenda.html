@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda de Avisos | B-Day Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+
+    <aside class="sidebar">
+        <div class="logo-dash">
+            <i class="fas fa-cake-candles"></i> B-Day<span>Manager</span>
+        </div>
+        <nav class="side-menu">
+            <a href="dashboard.html"><i class="fas fa-home"></i> Início</a>
+            <a href="cadastrar-pessoa.html"><i class="fas fa-user-plus"></i> Cadastrar Pessoa</a>
+            <a href="agenda.html" class="active"><i class="fas fa-calendar-alt"></i> Agenda Mensal</a>
+            <a href="index.html" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <header class="content-header">
+            <h1>Agenda de Comemorações</h1>
+            <p>Gerencie os avisos e tarefas baseados na <strong>tbAvisos</strong>.</p>
+        </header>
+
+        <section class="table-container">
+            <div class="table-header">
+                <h2>Tarefas do Mês</h2>
+                <input type="month" value="2026-04" style="padding: 8px; border-radius: 5px; border: 1px solid #ddd;">
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pessoa</th>
+                        <th>Aviso/Tarefa</th>
+                        <th>Tipo de Aviso</th>
+                        <th>Observação</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ana Silva</td>
+                        <td>Enviar Kit Boas-vindas</td>
+                        <td><span class="tag-func">Presencial</span></td>
+                        <td>Retirar no almoxarifado</td>
+                        <td><input type="checkbox"> Concluído</td>
+                    </tr>
+                    <tr>
+                        <td>Carlos Santos</td>
+                        <td>E-mail de Parabéns</td>
+                        <td><span class="tag-client">Digital</span></td>
+                        <td>Usar template Premium</td>
+                        <td><input type="checkbox"> Concluído</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

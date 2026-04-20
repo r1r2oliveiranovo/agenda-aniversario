@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle | BirthdayManager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+
+    <aside class="sidebar">
+        <div class="logo-dash">
+            <i class="fas fa-cake-candles"></i> B-Day<span>Manager</span>
+        </div>
+        <nav class="side-menu">
+            <a href="dashboard.html" class="active"><i class="fas fa-home"></i> Início</a>
+            <a href="cadastrar-pessoa.html"><i class="fas fa-user-plus"></i> Cadastrar Pessoa</a>
+            <a href="#"><i class="fas fa-calendar-alt"></i> Agenda Mensal</a>
+            <a href="#"><i class="fas fa-file-export"></i> Relatórios PDF</a>
+            <a href="index.html" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <h1>Painel de Aniversários</h1>
+            <div class="user-info">
+                <span>Olá, <strong>Admin RH</strong></span>
+                <img src="https://ui-avatars.com/api/?name=Admin+RH&background=4f46e5&color=fff" alt="Avatar">
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>Hoje</h3>
+                <p class="stat-number">02</p>
+                <span>Aniversariantes</span>
+            </div>
+            <div class="stat-card">
+                <h3>Este Mês</h3>
+                <p class="stat-number">14</p>
+                <span>Celebrações previstas</span>
+            </div>
+            <div class="stat-card alert">
+                <h3>Pendentes</h3>
+                <p class="stat-number">05</p>
+                <span>Brindes para enviar</span>
+            </div>
+        </section>
+
+        <section class="table-container">
+            <div class="table-header">
+                <h2>Listagem Geral (Banco Railway)</h2>
+                <button class="btn-add" onclick="window.location.href='cadastrar-pessoa.html'">+ Novo Contato</button>
+            </div>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Nascimento</th>
+                        <th>Telefone</th>
+                        <th>Tipo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-aniversariantes">
+                    </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
