@@ -2,12 +2,19 @@ require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const path = require('path'); // Importante para gerenciar caminhos de arquivos
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Configuração da conexão com o Railway (usando os dados que você me passou)
+// --- CONFIGURAÇÃO PARA SERVIR OS ARQUIVOS FRONT-END ---
+// Isso faz o servidor reconhecer as pastas onde estão seu CSS e JS
+app.use(express.static(path.join(__dirname))); 
+app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use('/js', express.static(path.join(__dirname, 'js')));
+
+// Configuração da conexão com o Railway
 const db = mysql.createPool({
     host: 'monorail.proxy.rlwy.net',
     user: 'root',
@@ -18,7 +25,7 @@ const db = mysql.createPool({
     connectionLimit: 10
 });
 
-// Testar a conexão assim que o servidor subir
+// Testar a conexão
 db.getConnection((err, conn) => {
     if (err) {
         console.error('❌ Erro ao conectar ao Railway:', err.message);
@@ -28,7 +35,26 @@ db.getConnection((err, conn) => {
     conn.release();
 });
 
-// Rota para Cadastrar uma Pessoa (Enviada pelo cadastrar-pessoa.html)
+// --- ROTAS DO SITE (FRONT-END) ---
+
+// Rota principal: Quando acessar o link do Vercel/Railway, abre o index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Rota para a página de login
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'login.html'));
+});
+
+// Rota para a página de registro
+app.get('/registro', (req, res) => {
+    res.sendFile(path.join(__dirname, 'registro.html'));
+});
+
+// --- ROTAS DA API (BANCO DE DATOS) ---
+
+// Cadastrar uma Pessoa
 app.post('/api/pessoas', (req, res) => {
     const { nome, cpf, nascimento, telefone, pessoa_tipo_id } = req.body;
     const sql = 'INSERT INTO tbPessoas (nome, cpf, nascimento, telefone, pessoa_tipo_id) VALUES (?, ?, ?, ?, ?)';
@@ -42,7 +68,7 @@ app.post('/api/pessoas', (req, res) => {
     });
 });
 
-// Rota para Listar Pessoas (Para mostrar na Dashboard)
+// Listar Pessoas
 app.get('/api/pessoas', (req, res) => {
     db.query('SELECT * FROM tbPessoas', (err, results) => {
         if (err) return res.status(500).json(err);
@@ -50,7 +76,8 @@ app.get('/api/pessoas', (req, res) => {
     });
 });
 
-const PORT = 3000;
+// Porta dinâmica (importante para Vercel/Railway)
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`✅ Servidor rodando em http://localhost:${PORT}`);
 });
