@@ -2,54 +2,28 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | B-Day Manager</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="auth-body">
-
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="auth-header">
-                <i class="fas fa-cake-candles"></i>
-                <h1>B-Day <span>Manager</span></h1>
-                <p>Bem-vindo de volta! Faça login para gerenciar seus aniversários.</p>
-            </div>
-
-            <form id="form-login">
-                <div class="input-group">
-                    <label>Usuário ou E-mail</label>
-                    <div class="input-with-icon">
-                        <i class="fas fa-user"></i>
-                        <input type="text" id="user" placeholder="Digite seu usuário" required>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label>Senha</label>
-                    <div class="input-with-icon">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="pass" placeholder="••••••••" required>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-auth">Entrar no Sistema</button>
-            </form>
-
-            <div class="auth-footer">
-                <p>Não tem uma conta? <a href="registro.html">Crie agora</a></p>
-                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar ao início</a>
-            </div>
+<body class="auth-body"> <div class="auth-card">
+        <div class="auth-header">
+            <i class="fas fa-cake-candles"></i>
+            <h1>B-Day <span>Manager</span></h1>
+            <p>Bem-vindo de volta!</p>
         </div>
+        <form id="form-login">
+            <div class="input-group">
+                <label>Usuário</label>
+                <input type="text" placeholder="Seu usuário" required>
+            </div>
+            <div class="input-group">
+                <label>Senha</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-auth">Entrar no Sistema</button>
+        </form>
+        <p style="margin-top:15px; font-size: 0.9rem;">Não tem conta? <a href="registro.html" style="color:#4f46e5;">Crie agora</a></p>
     </div>
-
-    <script>
-        document.getElementById('form-login').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Por enquanto redireciona direto, depois faremos a validação no banco
-            window.location.href = 'dashboard.html';
-        });
-    </script>
 </body>
 </html>
