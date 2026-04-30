@@ -2,28 +2,65 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | B-Day Manager</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="auth-body"> <div class="auth-card">
+<body class="auth-body"> 
+    <div class="auth-card">
         <div class="auth-header">
             <i class="fas fa-cake-candles"></i>
             <h1>B-Day <span>Manager</span></h1>
             <p>Bem-vindo de volta!</p>
         </div>
+        
         <form id="form-login">
             <div class="input-group">
                 <label>Usuário</label>
-                <input type="text" placeholder="Seu usuário" required>
+                <input type="text" name="login" placeholder="Seu usuário" required>
             </div>
             <div class="input-group">
                 <label>Senha</label>
-                <input type="password" placeholder="••••••••" required>
+                <input type="password" name="senha" placeholder="••••••••" required>
             </div>
             <button type="submit" class="btn-auth">Entrar no Sistema</button>
         </form>
+        
         <p style="margin-top:15px; font-size: 0.9rem;">Não tem conta? <a href="registro.html" style="color:#4f46e5;">Crie agora</a></p>
     </div>
+
+    <script>
+        document.getElementById('form-login').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Impede o recarregamento da página
+
+            // Captura os valores dos inputs pelo nome
+            const login = document.querySelector('input[name="login"]').value;
+            const senha = document.querySelector('input[name="senha"]').value;
+
+            try {
+                // Lembre-se de substituir pela URL real do seu projeto no Railway
+                const response = await fetch('https://seu-projeto.railway.app/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ login, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Bem-vindo!');
+                    // O REDIRECIONAMENTO ACONTECE AQUI:
+                    window.location.href = "index.html"; 
+                } else {
+                    // Exibe a mensagem de erro vinda do banco (ex: "Usuário incorreto")
+                    alert(data.message || 'Erro ao fazer login');
+                }
+            } catch (error) {
+                console.error('Erro ao conectar com o servidor:', error);
+                alert('Erro ao tentar conectar com o servidor da Railway.');
+            }
+        });
+    </script>
 </body>
 </html>

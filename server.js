@@ -1,37 +1,44 @@
-require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const path = require('path');
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
-// Servir arquivos estáticos (CSS e JS)
-app.use(express.static(path.join(__dirname)));
-app.use('/css', express.static(path.join(__dirname, 'css')));
-app.use('/js', express.static(path.join(__dirname, 'js')));
-
-const db = mysql.createPool({
-    host: 'monorail.proxy.rlwy.net',
-    user: 'root',
-    password: 'UZlbvXkJRNXxAciCMrjxZjESnVnOOpho',
-    database: 'railway',
-    port: 49559
+// Configuração da conexão usando as variáveis da Railway
+const db = mysql.createConnection({
+    host: process.env.MYSQLHOST || 'viaduct.proxy.rlwy.net',
+    user: process.env.MYSQLUSER || 'root',
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE || 'railway',
+    port: process.env.MYSQLPORT || 25251
 });
 
-// Rotas de Páginas
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-app.get('/dashboard', (req, res) => res.sendFile(path.join(__dirname, 'dashboard.html')));
+db.connect(err => {
+    if (err) {
+        console.error('Erro ao conectar ao MySQL:', err);
+        return;
+    }
+    console.log('Conectado ao banco de dados da Railway!');
+});
 
-// API: Listar Pessoas
-app.get('/api/pessoas', (req, res) => {
-    db.query('SELECT * FROM tbPessoas', (err, results) => {
-        if (err) return res.status(500).json(err);
-        res.json(results);
+// Rota de Login
+app.post('/login', (req, res) => {
+    const { login, senha } = req.body;
+    const query = "SELECT * FROM tbUsuarios WHERE login = ? AND senha = ?";
+
+    db.query(query, [login, senha], (err, results) => {
+        if (err) return res.status(500).send(err);
+        if (results.length > 0) {
+            res.status(200).send({ message: "Login realizado com sucesso!", user: results[0] });
+        } else {
+            res.status(401).send({ message: "Usuário ou senha incorretos." });
+        }
     });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Rodando em http://localhost:${PORT}`));
+app.listen(process.env.PORT || 3000, () => {
+    console.log("Servidor rodando!");
+});
