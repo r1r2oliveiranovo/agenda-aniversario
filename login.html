@@ -32,15 +32,14 @@
 
     <script>
         document.getElementById('form-login').addEventListener('submit', async (e) => {
-            e.preventDefault(); // Impede o recarregamento da página
+            e.preventDefault();
 
-            // Captura os valores dos inputs pelo nome
             const login = document.querySelector('input[name="login"]').value;
             const senha = document.querySelector('input[name="senha"]').value;
 
             try {
-                // Lembre-se de substituir pela URL real do seu projeto no Railway
-                const response = await fetch('https://seu-projeto.railway.app/login', {
+                // URL atualizada com o seu domínio da Railway
+                const response = await fetch('https://agenda-aniversario-production.up.railway.app/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ login, senha })
@@ -50,15 +49,14 @@
 
                 if (response.ok) {
                     alert('Bem-vindo!');
-                    // O REDIRECIONAMENTO ACONTECE AQUI:
+                    // Redireciona para a página principal após o login
                     window.location.href = "index.html"; 
                 } else {
-                    // Exibe a mensagem de erro vinda do banco (ex: "Usuário incorreto")
-                    alert(data.message || 'Erro ao fazer login');
+                    alert(data.message || 'Usuário ou senha incorretos');
                 }
             } catch (error) {
-                console.error('Erro ao conectar com o servidor:', error);
-                alert('Erro ao tentar conectar com o servidor da Railway.');
+                console.error('Erro ao conectar:', error);
+                alert('Erro ao tentar conectar com o servidor da Railway. Verifique se o serviço está online.');
             }
         });
     </script>
