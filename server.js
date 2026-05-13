@@ -1,44 +1,35 @@
 const express = require('express');
+const cors = require('cors'); // 1. Importa o CORS
 const mysql = require('mysql2');
-const cors = require('cors');
-const path = require('path');
-
 const app = express();
+
+// 2. Configura o CORS para aceitar seu link da Vercel
+app.use(cors({
+    origin: 'https://agenda-aniversario-blush.vercel.app', // Seu link da Vercel
+    methods: ['GET', 'POST'],
+    credentials: true
+}));
+
 app.use(express.json());
-app.use(cors());
 
-// Configuração da conexão usando as variáveis da Railway
-const db = mysql.createConnection({
-    host: process.env.MYSQLHOST || 'viaduct.proxy.rlwy.net',
-    user: process.env.MYSQLUSER || 'root',
-    password: process.env.MYSQLPASSWORD,
-    database: process.env.MYSQLDATABASE || 'railway',
-    port: process.env.MYSQLPORT || 25251
-});
-
-db.connect(err => {
-    if (err) {
-        console.error('Erro ao conectar ao MySQL:', err);
-        return;
-    }
-    console.log('Conectado ao banco de dados da Railway!');
-});
-
-// Rota de Login
+// Exemplo da sua rota de login (verifique se os nomes das colunas batem com o seu SQL)
 app.post('/login', (req, res) => {
     const { login, senha } = req.body;
-    const query = "SELECT * FROM tbUsuarios WHERE login = ? AND senha = ?";
-
-    db.query(query, [login, senha], (err, results) => {
-        if (err) return res.status(500).send(err);
-        if (results.length > 0) {
-            res.status(200).send({ message: "Login realizado com sucesso!", user: results[0] });
+    const sql = "SELECT * FROM tbUsuarios WHERE login = ? AND senha = ?";
+    
+    // Supondo que sua conexão se chama 'db'
+    db.query(sql, [login, senha], (err, data) => {
+        if (err) return res.status(500).json({ message: "Erro no banco" });
+        if (data.length > 0) {
+            return res.json({ message: "Sucesso" });
         } else {
-            res.status(401).send({ message: "Usuário ou senha incorretos." });
+            return res.status(401).json({ message: "Login ou senha incorretos" });
         }
     });
 });
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log("Servidor rodando!");
+// A porta deve ser dinâmica para o Railway funcionar
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
